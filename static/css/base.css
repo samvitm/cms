@@ -10,7 +10,7 @@ body {  }
 a { text-decoration: none; color: rgb(101, 101, 101); }
 a:hover { color: rgb(33, 29, 112); }
 .hidden { display: none; }
-.headerWrapper { background: url('/static/images//static/images/headerbg.gif') no-repeat scroll right top transparent; height: 167px; min-width: 960px; }
+.headerWrapper { background: url('/static/images/headerbg.gif') no-repeat scroll right top transparent; height: 167px; min-width: 960px; }
 .headerWrapper .headerWrapperFix { height: 167px; margin: auto; position: relative; width: 960px; }
 .headerWrapper .headerWrapperFix .logoWrapper { position: relative; top: 10px; }
 .headerWrapper .headerWrapperFix .commonNav { position: absolute; right: 0pt; top: 0pt; }
@@ -19,8 +19,8 @@ a:hover { color: rgb(33, 29, 112); }
 .headerWrapper .headerWrapperFix .commonNav li a:hover {  }
 .headerWrapper .headerWrapperFix .mainNav { position: absolute; width: 960px; bottom: 4px; border-left: 1px solid rgb(206, 206, 206); z-index: 999; }
 .headerWrapper .headerWrapperFix .mainNav li { float: left; }
-.headerWrapper .headerWrapperFix .mainNav li a { float: left; font-size: 1.2em; font-weight: bold; color: rgb(33, 29, 112); border-right: 1px solid rgb(206, 206, 206); padding: 11px 35px 10px 15px; background: url('/static/images//static/images/navarrowicon.png') no-repeat scroll right 0pt transparent; }
-.headerWrapper .headerWrapperFix .mainNav li a:hover, .headerWrapper .headerWrapperFix .mainNav li.sel a, .headerWrapper .headerWrapperFix .mainNav li.sel a:hover { background: url('/static/images//static/images/navarrowicon.png') no-repeat scroll right -36px transparent; }
+.headerWrapper .headerWrapperFix .mainNav li a { float: left; font-size: 1.2em; font-weight: bold; color: rgb(33, 29, 112); border-right: 1px solid rgb(206, 206, 206); padding: 11px 35px 10px 15px; background: url('/static/images/navarrowicon.png') no-repeat scroll right 0pt transparent; }
+.headerWrapper .headerWrapperFix .mainNav li a:hover, .headerWrapper .headerWrapperFix .mainNav li.sel a, .headerWrapper .headerWrapperFix .mainNav li.sel a:hover { background: url('/static/images/navarrowicon.png') no-repeat scroll right -36px transparent; }
 .headerWrapper .headerWrapperFix .searchWrapper { position: absolute; right: 0pt; top: 43px; width: 370px; }
 .headerWrapper .headerWrapperFix .searchWrapper input.searchInput { border: 1px solid rgb(220, 217, 217); float: left; font-size: 1.1em; height: 17px; margin-right: -4px; padding: 3px 10px; width: 270px; border-top-left-radius: 5px; border-bottom-left-radius: 5px; }
 .headerWrapper .headerWrapperFix .searchWrapper input.searchBtn { border: 1px solid rgb(220, 217, 217); color: rgb(133, 133, 133); float: left; font-size: 1.2em; font-weight: bold; height: 25px; margin: 0pt; width: 75px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; }
@@ -29,8 +29,8 @@ a:hover { color: rgb(33, 29, 112); }
 .infoWrapper .breadCrumbWrapper p, .infoWrapper .breadCrumbWrapper .breadCrumb, .infoWrapper .breadCrumbWrapper .breadCrumb li { float: left; }
 .infoWrapper .breadCrumbWrapper p { font-size: 1.2em; font-weight: bold; color: rgb(33, 29, 112); }
 .infoWrapper .breadCrumbWrapper .breadCrumb { margin-left: 10px; font-size: 1.2em; color: rgb(51, 51, 51); }
-.infoWrapper .breadCrumbWrapper .breadCrumb a { background: url('/static/images//static/images/breadcrumbarrowicon.png') no-repeat scroll right center transparent; padding-right: 15px; color: rgb(33, 29, 112); }
-.infoWrapper .breadCrumbWrapper .breadCrumb .lnk { background: url('/static/images//static/images/breadcrumbarrowicon.png') no-repeat scroll right center transparent; padding-right: 15px; color: rgb(33, 29, 112); }
+.infoWrapper .breadCrumbWrapper .breadCrumb a { background: url('/static/images/breadcrumbarrowicon.png') no-repeat scroll right center transparent; padding-right: 15px; color: rgb(33, 29, 112); }
+.infoWrapper .breadCrumbWrapper .breadCrumb .lnk { background: url('/static/images/breadcrumbarrowicon.png') no-repeat scroll right center transparent; padding-right: 15px; color: rgb(33, 29, 112); }
 .infoWrapper .breadCrumbWrapper .breadCrumb .home { background: url('/static/images/breadcrumbhomeicon.png') no-repeat scroll 0pt 0pt transparent; padding-left: 20px; }
 .siteInfo { padding: 8px; position: absolute; right: 0pt; top: 80px; }
 .siteInfo li { float: left; margin-left: 20px; font-size: 1.2em; color: rgb(33, 29, 112); }
