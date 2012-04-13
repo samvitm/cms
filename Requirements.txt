@@ -1,0 +1,35 @@
+Users in the system :
+  Author
+  Conference Admin
+  Delegate
+  Sponsor
+  Reviewer
+
+  Each having:
+    Address
+    Phone Number
+    City
+    State
+    Country
+
+
+Models to be created :
+  Payment = From ( Delegate/Sponsor ) , transaction id, amount, which for conference for, datetime,
+  Conference = Name, Programs-m2m, about, start datetime, end datetime, venue, conference admin - fk - reverse lookup?,
+  Program = Name, Venue, StartDate, EndDate
+  Lecture = Program related to, description, name
+  BannerUpload = Sponsor Uploaded by, image, location,
+  PaperUpload or Submission = Title, Authors ( m2m ) - inline, topic area - choices ( can be made into a model), Abstract, Comments, status, reviewers assigned - m2m, status ( accepted/ reject), fileupload
+  Comments - Content,Author( User)
+  Review - Reviewer, Recommendation - Options radio, Submission categorizarion - options radio, Overall rating - radio, Technical correctness, clarity of presentation- radio,review completed - checkbox
+  ReviewUpload - review - fk , file ( ob )
+  Bids = Bid ( Interest - radio/select ),Submission
+
+Some views
+  Review Score
+
+Actions:
+  Accept this submission,
+  Review it,
+  
+  
