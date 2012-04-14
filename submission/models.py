@@ -19,3 +19,6 @@ class TopicArea(models.Model):
 class Comments(models.Model):
   comment = models.TextField()
   author = models.ForeignKey(User)
+
+  class Meta:
+    verbose_name_plural = 'Comments'
