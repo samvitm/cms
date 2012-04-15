@@ -1,0 +1,10 @@
+{% load i18n %}            
+<span style="display: inline-block;padding-top: 10px;padding-left: 10px"><b>{% blocktrans with title as filter_title %} By {{ filter_title }} {% endblocktrans %}</b>
+  <select onChange="javascript:window.location = this.options[this.selectedIndex].value;" style="width:196px;margin-right:5%;">
+   {% for choice in choices %}
+      <option {% if choice.selected %}selected{% endif %} value="{{ choice.query_string|iriencode }}" style="">
+        {{ choice.display }}
+      </option>
+    {% endfor %}           
+  </select>                
+</span>

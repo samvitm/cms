@@ -43,16 +43,18 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
+import os
+CURRENT_DIR = os.getcwd()
+
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = CURRENT_DIR + 'static/files/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
-import os
-CURRENT_DIR = os.getcwd()
+MEDIA_URL = '/media/'
+
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
@@ -66,7 +68,6 @@ STATIC_URL = '/static/'
 # URL prefix for admin static files -- CSS, JavaScript and images.
 # Make sure to use a trailing slash.
 # Examples: "http://foo.com/static/admin/", "/static/admin/".
-ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
@@ -113,7 +114,7 @@ TEMPLATE_DIRS = (
     CURRENT_DIR + '/templates',
 )
 
-ADMIN_MEDIA_PREFIX = STATIC_URL + "grappelli/"
+ADMIN_MEDIA_PREFIX = STATIC_URL + "admin/"
 GRAPPELLI_ADMIN_TITLE = 'Conference Management System'
 INSTALLED_APPS = (
 
@@ -123,7 +124,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'grappelli',
+   # 'grappelli',
     'cms.conference',
     'cms.registration',
     'cms.review',
@@ -134,7 +135,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
-
+AUTH_PROFILE_MODULE = "registration.UserProfile"
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error.

@@ -18,3 +18,5 @@ class UserProfile(models.Model):
   country = models.CharField(max_length=100)
   type = models.CharField(max_length=100,choices=USER_TYPES)
   user = models.ForeignKey(User, unique=True)
+
+User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])

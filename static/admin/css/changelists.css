@@ -20,12 +20,13 @@
 }
 
 .change-list .filtered {
-    background: white url(../img/admin/changelist-bg.gif) top right repeat-y !important;
+    //background: white url(../img/admin/changelist-bg.gif) top right repeat-y !important;
 }
 
 .change-list .filtered .results, .change-list .filtered .paginator, .filtered #toolbar, .filtered div.xfull {
-    margin-right: 160px !important;
+    margin-right: 200px !important;
     width: auto !important;
+    
 }
 
 .change-list .filtered table tbody th {
@@ -106,10 +107,11 @@
     top: 0;
     right: 0;
     z-index: 1000;
-    width: 160px;
+    width: 200px;
     border-left: 1px solid #ddd;
     background: #efefef;
     margin: 0;
+    min-height: 400px;
 }
 
 #changelist-filter h2 {

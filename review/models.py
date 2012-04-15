@@ -33,4 +33,7 @@ class Bid(models.Model):
   bid = models.CharField(max_length=100,choices=BID_CHOICES)
 
 class Recomendation(models.Model):
-  recomendation = models.TextField()
+  recomendation = models.CharField(max_length=300)
+
+  def __unicode__(self):
+    return self.recomendation

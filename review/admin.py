@@ -1,9 +1,10 @@
 # Author Ednha
 from django.contrib import admin
 from review.models import *
-
+from review.forms import ReviewForm
 class ReviewAdmin(admin.ModelAdmin):
-  pass
+  form = ReviewForm
+  exclude = ('reviewer','comments',)
 class ReviewUploadAdmin(admin.ModelAdmin):
   pass
 class BidAdmin(admin.ModelAdmin):
