@@ -11,12 +11,21 @@ class SubmissionAdmin(admin.ModelAdmin):
   exclude = ('authors','reviewers','status','comments',)
 
   list_display = ['title','displayStatus','displayTopics','displayPaper',]
-
+  def get_urls(self):
+    urls = super(SubmissionAdmin, self).get_urls()
+    print urls
+    return urls
+  def queryset(self , request):
+    qs = super(SubmissionAdmin , self).queryset(request)
+    if request.user.is_superuser:
+        return qs
+    return qs.filter(authors = request.user)
   def save_model(self,request,obj,form,change):
       if getattr(obj,'author',None) is None:
-          obj.authors.add(request.user)
-      obj.last_modified_by = request.user
-      obj.save()
+        obj.save()
+        obj.authors.add(request.user)
+        obj.last_modified_by = request.user
+        obj.save()
 
   def displayTopics(self,sub):
     cs = sub.topic.all()

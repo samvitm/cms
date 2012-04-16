@@ -1,0 +1,94 @@
+#signupform
+{
+  padding-left: 150px;
+  padding-bottom: 30px;
+  
+}
+#content
+{
+  margin: 0;
+  padding: 0;
+}
+#content2
+{
+  width: 1200px;
+  margin-top: 50px;
+  margin-left: 50px;
+  border: 3px solid #dcdcdc;
+  text-align: center;
+  overflow: auto;
+
+ }
+#colm1
+{
+  width: 800px;
+  float: left;
+  border-right: 2px solid #808080;
+}
+
+#colm1 h2
+{
+  width: 800px;
+  height: 40px;
+  text-align: center;
+  padding-top: 40px;
+  margin-top: -10px;
+  background-color: #e1f0f5;
+}
+
+
+#colm2
+{
+
+  margin-left: 800px;
+  padding-left: 50px;
+  padding-right: 8px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height:100%;
+  width: 340px;
+}
+
+#colm2 h2
+{
+  width: 400px;
+  height: 40px;
+  padding-top: 30px;
+  margin-top: -10px;
+  text-align: center;
+  margin-left: -50px;
+  background-color: #E0FFB8;
+}
+label
+{
+  margin: auto;
+}
+input[type="text"],input[type="password"]
+{
+  padding: 8px;
+  width: 250px;
+  margin-top: 10px;
+  margin-left: 30px;
+  font-size: 15px;
+}
+select
+{
+  padding: 8px;
+  width: 270px;
+  margin-top: 10px;
+  margin-left: 30px;
+}
+
+.errormsg
+{
+  color: red;
+}
+
+#loginform
+{
+  background-color: #F2F2F2;
+  position: relative;
+  top:100px;
+  left: -20px;
+  padding: 20px;
+}

@@ -1,0 +1,48 @@
+{% extends "admin/index.html" %}
+{% block title %} Signup | BITS CMS{% endblock %}
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% load adminmedia %}{% admin_media_prefix %}css/dashboard.css" />
+<link rel="stylesheet" type="text/css" href="/static/css/main.css">
+{% endblock %}
+{% block coltype %}{% endblock %}
+{% block content %}
+  <div id='content2'>
+    <div id='colm1'>
+      <h2>NEW USERS</h2>
+      <span class='errormsg'>{{ message }}</span>
+      <div id='signupform'>
+        <br/>
+        <form action="{% url signup %}" method="post" >
+          {% csrf_token %}
+          <table>
+            {{ form.as_table }}
+         </table>
+          <br/>
+         <input type="submit" value="SIGN UP" style="width: 150px;height: 30px;margin-left: -100px ;">
+         </form>
+      </div>
+    </div>
+    <div id=colm2>
+      <h2>EXISTING USERS</h2>
+      <div id='loginform'>
+        <form action="{% url login %}" method="post">
+          <br/>
+          <span style="color: red;">{{ lmessage }}</span>
+          {% csrf_token %}
+          <p>
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" class="text">
+          </p>
+          <p>
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" class="text">
+          </p>
+          <p>
+          <input type="submit" value="Login" class="submit" style="width: 150px;height: 30px;">
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+{% block sidebar %}
+{% endblock %}
