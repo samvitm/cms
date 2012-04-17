@@ -657,6 +657,7 @@ table#change-history tbody th {
 
 #content {
     margin: 10px 15px;
+    min-height: 500px;
 }
 
 #header {
@@ -711,7 +712,8 @@ table#change-history tbody th {
 }
 
 .dashboard #content {
-    width: 500px;
+    width: 600px;
+    min-height: 500px;
 }
 
 /* HEADER */
@@ -722,6 +724,33 @@ table#change-history tbody th {
     background: -moz-linear-gradient(top, #444, #333);
     background: -webkit-gradient(linear, left top, left bottom, from(#444), to(#333));
     overflow: hidden;
+}
+
+#logoimage
+{
+  width: 100%;
+}
+#colorbar
+{
+  text-align: right;
+  margin-bottom: -2px;
+}
+
+#topnav
+{
+  text-align: right;
+  font-size: 16px;
+  font-weight: bold;
+  position: absolute;
+  left: 850px;
+  top : 90px;
+  
+}
+
+#logoimage img
+{
+  max-width: 350px;
+  max-height: 150px;
 }
 
 #header a:link, #header a:visited {
@@ -755,6 +784,12 @@ table#change-history tbody th {
     padding: 1.2em 10px;
     font-size: 11px;
     text-align: right;
+    color: #eee;
+    background: #333;
+    background: -moz-linear-gradient(top, #444, #333);
+    background: -webkit-gradient(linear, left top, left bottom, from(#444), to(#333));
+    overflow: hidden;
+    /*height:90px;*/
 }
 
 /* SIDEBAR */
@@ -774,3 +809,14 @@ table#change-history tbody th {
     color: #666;
 }
 
+
+.footerWrapper, .cpInfoFixWrapper { overflow: hidden; margin-top: -7px; background: url('/static/images/contentbg.gif') no-repeat scroll left top transparent; padding-top: 13px; }
+.cpInfoFixWrapper { background: none repeat scroll 0% 0% rgb(245, 245, 245); border-top: 1px solid rgb(213, 213, 213); margin-top: 9px; padding-top: 0pt; }
+.footerWrapper .footerFix, .cpInfoFixWrapper .cpInfoFix { width: 960px; margin: auto; overflow: hidden; }
+.cpInfoFixWrapper .cpInfoFix { background: url('/static/images/companybranding.gif') no-repeat scroll right center transparent; height: 73px; padding: 8px; }
+.cpInfoFixWrapper .cpInfoFix p { width: 400px; font-size: 11px; color: rgb(109, 109, 109); margin-top: 5px; }
+.cpInfoFixWrapper .cpInfoFix p.info { font-weight: bold; }
+.footerWrapper .footerFix h2 { font-size: 1.6em; color: rgb(33, 29, 112); font-weight: bold; background: url('/static/images/quicklinkarrow.png') no-repeat scroll right -12px transparent; float: left; padding-right: 20px; cursor: pointer; letter-spacing: -1px; }
+.footerWrapper .footerFix ul { float: left; width: 960px; margin-top: 10px; }
+.imgFrame img { border: 3px solid rgb(255, 255, 255); }
+.imgFrame, .imgFrame { border: 1px solid rgb(192, 192, 192); margin-top: 10px;width:245px;  }

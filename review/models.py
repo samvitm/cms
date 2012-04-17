@@ -24,9 +24,15 @@ class Review(models.Model):
   completed = models.BooleanField(verbose_name='I have completed the review')
   comments = models.ManyToManyField(Comments)
 
+  def __unicode__(self):
+    return 'Review of '+ str(self.submission)
+
 class ReviewUpload(models.Model):
   review = models.ForeignKey(Review)
-  file = models.FileField(upload_to='/reviews')
+  file = models.FileField(upload_to='reviews')
+
+  def __unicode__(self):
+    return str(self.review)
 
 class Bid(models.Model):
   submission = models.ForeignKey(Submission)

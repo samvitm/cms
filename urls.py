@@ -17,3 +17,10 @@ urlpatterns+=patterns('cms.registration.views',
   url(r'^signup/$','signup',name='signup'),
   url(r'^login/$','login',name='login'),
 )
+
+urlpatterns+=patterns('cms.review.views',
+
+  url(r'^assign/(?P<subid>\d+)?$','assignReviewers',name='assign'),
+
+)
+

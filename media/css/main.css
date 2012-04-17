@@ -92,3 +92,53 @@ select
   left: -20px;
   padding: 20px;
 }
+
+#contentmain
+{
+  min-height: 500px;
+  width: 1200px;
+  /*border: 2px solid #dcdcdc;*/
+  margin: auto;
+  padding-top: 50px;
+
+}
+#contentmain .colm1
+{
+  min-height:500px;
+  border-right: 2px solid #808080;
+  width:800px;
+  float: left;
+  padding-left: 30px;
+  padding-right: 30px;
+
+}
+#contentmain .colm2
+{
+  min-height:500px;
+  width: 300px;
+  float: left;
+  
+  padding-left: 30px;
+}
+
+h1
+{
+  font-size: 30px;
+}
+
+#contentmain p
+{
+  padding-bottom: 30px;
+  border-bottom: 1px solid  #808080;
+  width: 100%;
+  font-size: 14px;
+  font-weight: bold;
+}
+li
+{
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  
+}

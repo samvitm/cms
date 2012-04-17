@@ -1,0 +1,34 @@
+{% extends "admin/login.html" %}
+{% block maincontent %}
+
+  {% if subs %}
+    <h2>Select submission to assign Reviewers to : </h2> <br>
+    <ul>
+      {% for sub in subs %}
+        <li><a href="{{ sub.id }}">{{ sub }}</a></li>
+        {% if sub.reviewers.all %}
+          <h4>Assigned Reviewers : </h4>
+          {% for r in sub.reviewers.all %}
+        <ul>
+          <li>{{ r }} - <a href="{% url assign sub.id %}?remove={{ r.id }}"><span style="font-size:12px;color: maroon;">Remove</span></a></li>
+        </ul>
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+  {% if revs %}
+    <h2>Select the reviewers you want to assign to : <span style="color:#4169e1;">{{ sub.title }} by {{ sub.authors.all }}</span> </h2><br>
+    <form action="{% url assign sub.id %}" method="POST">
+    {% csrf_token %}
+    <ul>
+      {% for rev in revs %}
+        <li><input type="checkbox" value="{{ rev.id }}" name='reviewers'> <span style="padding-left: 15px">{{ rev.get_full_name }} - [User : {{ rev }}]</span> </li>
+      {% endfor %}
+    </ul>
+    <input type="submit" value="Assign Selected" class="submit" style="width: 150px;height: 30px;">
+    </form>
+  {% endif %}
+
+
+{% endblock %}

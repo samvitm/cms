@@ -19,6 +19,14 @@
 
     {% if not is_popup %}
     <!-- Header -->
+    <div id='logoimage'><img src="/static/images/bitslogo.png"></div>
+    <div id='topnav'>
+      <a href="" >Home</a> |
+      <a href="" >Conferences</a> |
+      <a href="" >About</a> |
+      <a href="" >Contact Us</a> 
+    </div>
+    <div id='colorbar'><img src="/static/images/contentbg.gif"></div>
     <div id="header">
         <div id="branding">
         {% block branding %}{% endblock %}
@@ -74,7 +82,17 @@
     </div>
     <!-- END Content -->
 
-    {% block footer %}<div id="footer"></div>{% endblock %}
+      {% block footer %}
+      <div class="cpInfoFixWrapper">
+      <div class="cpInfoFix">
+        <p class="info">An institution deemed to be a University estd. vide Sec.3 of the UGC Act,1956 under notification #
+          F.12-23/63.U-2 of Jun 18,1964</p>
+        <p>© 2011-12 BITS-Pilani, India. </p>
+
+      </div>
+    {% endblock %}
+    </div>
+
 </div>
 <!-- END Container -->
 

@@ -42,6 +42,7 @@ def signup(request):
 
 @csrf_protect
 def login(request):
+  form = SignUpForm()
   if request.user.is_authenticated() :
     return HttpResponseRedirect(reverse('profile'))
   if request.POST :
@@ -53,4 +54,5 @@ def login(request):
         return HttpResponseRedirect(reverse('admin:index'))
     else:
         message = 'Username does not exist/Wrong username-password!'
-  return render_to_response('signup.html', {'lmessage':message},context_instance=RequestContext(request))
+        return render_to_response('signup.html', {'form':form,'lmessage':message},context_instance=RequestContext(request))
+  return render_to_response('signup.html', {'form':form},context_instance=RequestContext(request))

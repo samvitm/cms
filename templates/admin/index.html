@@ -51,10 +51,10 @@
 <div id="content-related">
     {% if user.is_superuser %}
     <div class="module" id="settings">
-         <h2>{% trans 'Settings' %}</h2>
+         <h2>{% trans 'Manage' %}</h2>
               <br/>
              <ul class="actionlist">
-                <li class='changelink'> <a href="{ url settings }">BITS Coordinator settings</a> </li>
+                <li class='changelink'> <a href="{%  url assign %}">Assign Reviewers</a> </li>
              </ul>
      </div>
     {% endif %}
