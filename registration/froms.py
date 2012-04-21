@@ -9,6 +9,8 @@ class SignUpForm(forms.Form):
   username = forms.CharField(max_length=100)
   password = forms.CharField(max_length=100,widget=forms.PasswordInput)
   re_password = forms.CharField(max_length=100,label='Re enter Password',widget=forms.PasswordInput)
+  first_name = forms.CharField(max_length=100)
+  last_name = forms.CharField(max_length=100)
   email = forms.EmailField()
   city = forms.CharField(max_length=100)
   phone = forms.CharField(max_length=100)

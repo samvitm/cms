@@ -19,4 +19,7 @@ class UserProfile(models.Model):
   type = models.CharField(max_length=100,choices=USER_TYPES)
   user = models.ForeignKey(User, unique=True)
 
+  def __unicode__(self):
+    return str(self.user.username)
+
 User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])
