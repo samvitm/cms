@@ -1,14 +1,41 @@
 # Author Ednha
 from django.contrib import admin
-import settings
-from submission.models import Submission,Comments,TopicArea
-from submission.forms import SubmissionForm,CommentsForm
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+import cms.settings
+from cms.submission.models import Submission,Comments,TopicArea, Author
+from cms.submission.forms import SubmissionForm,CommentsForm
 from django.contrib.contenttypes import generic
+
+class CommentsInline(admin.StackedInline):
+  model = Comments
+  extra = 1
+  exclude = ('author',)
+ 
+
+class AuthorInline(admin.StackedInline):
+  model = Author
+  extra = 1
 
 
 class SubmissionAdmin(admin.ModelAdmin):
   form = SubmissionForm
-  exclude = ('authors','reviewers','status','comments',)
+  inlines = [AuthorInline]
+  exclude = ('author','reviewers','status',)
+  def change_view(self, request, obj_id):
+    if request.user.profile.type=='Reviewer':
+      self.inline_instances = []
+    else:
+      pass
+    return super(SubmissionAdmin, self).change_view(request, obj_id)
+
+  def add_view(self, request):
+    if request.user.profile.type=='Reviewer':
+      print self
+      self.inline_instances = []
+    else:
+      pass
+    return super(SubmissionAdmin, self).add_view(request)
 
   list_display = ['title','abstract','displayStatus','displayTopics','displayPaper',]
 
@@ -20,19 +47,22 @@ class SubmissionAdmin(admin.ModelAdmin):
 
   def get_urls(self):
     urls = super(SubmissionAdmin, self).get_urls()
-    print urls
     return urls
   def queryset(self , request):
     qs = super(SubmissionAdmin , self).queryset(request)
     if request.user.is_superuser or request.user.profile.type == 'Reviewer':
         return qs
-    return qs.filter(authors = request.user)
+    return qs.filter(author = request.user)
+  def save_formset(self, request, form, formset, change):
+    comments = formset.save(commit=False)
+    for c in comments:
+      c.author = request.user
+      c.save()
   def save_model(self,request,obj,form,change):
-      if getattr(obj,'author',None) is None:
-        obj.save()
-        obj.authors.add(request.user)
-        obj.last_modified_by = request.user
-        obj.save()
+    print 'save_model _submission'
+    obj.author = request.user
+    obj.last_modified_by = request.user
+    obj.save()
   def get_actions(self, request):
     actions = super(SubmissionAdmin, self).get_actions(request)
     if request.user.is_superuser:
@@ -55,6 +85,9 @@ class SubmissionAdmin(admin.ModelAdmin):
 
   def accept(self, request, queryset):
     rows_updated = queryset.update(status=True)
+    for sub in queryset:
+        email = render_to_string('emails/statusacc.html',{'sub':sub})
+        send_mail('Your paper has been accepted  ',email,'BITS Conference <noreply@bits-cms.mailgun.com>',[sub.author.email],fail_silently = True)
     if rows_updated == 1:
         message_bit = "1 Submission was"
     else:
@@ -74,9 +107,12 @@ class SubmissionAdmin(admin.ModelAdmin):
 
   def displayPaper(self,sub):
     p = str(sub.paper).split('/')[-1]
-    link = '<a href="%spaper_uploads/%s">Download</a>' % (settings.MEDIA_URL,p,)
+    link = '<ul>'
+    link += '<li><a href="%spaper_uploads/%s">Download</a></li>' % (cms.settings.MEDIA_URL,p,)
+    link +='<li><a href="/comments?s='+str(sub.id)+'">Comment / View Comments</a></li>'
+    link += '</ul>'
     return link
-  displayPaper.short_description = 'Download Paper'
+  displayPaper.short_description = 'Manage'
   displayPaper.allow_tags = True
 
   def displayStatus(self,sub):
@@ -91,7 +127,11 @@ class SubmissionAdmin(admin.ModelAdmin):
 
 
 class CommentsAdmin(admin.ModelAdmin):
-  pass
+  def save_formset(self, request, form, formset, change):
+    print 'formsetsave'
+  def save_model(self, request, obj, form, change):
+    print 'jerer'
+
 class TopicAreaAdmin(admin.ModelAdmin):
   pass
 
