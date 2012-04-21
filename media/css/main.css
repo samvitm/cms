@@ -124,8 +124,12 @@ select
 h1
 {
   font-size: 30px;
+  color: #211D70;
 }
-
+h2
+{
+  color: #211D70;
+}
 #contentmain p
 {
   padding-bottom: 30px;
@@ -141,4 +145,66 @@ li
   margin-top: 10px;
   margin-bottom: 10px;
   
+}
+
+.comment
+{
+  padding-left: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border: 1px solid #919B9C;
+  width: 500px;
+  
+}
+
+.hrs
+{
+  height: 3px;
+  width: 600px;
+}
+
+.normalul li
+{
+  font-weight: normal;
+  
+}
+
+#profile
+{
+  margin-top: 50px;
+  margin-left: 30px;
+  
+}
+
+
+#profile td
+{
+  width: 200px;
+  font-size: 16px;
+  padding: 15px 10px 15px 10px;
+  border-bottom: 1px solid #5aa3c7;
+  font-weight: bold;
+
+}
+#profile tr
+{
+
+  padding-bottom: 50px;
+  padding-top: 5px;
+  margin-top: 40px;
+  width: 400px;
+  border: 0;
+}
+
+#leftnav
+{
+  margin-top: 30px;
+  margin-left: -30px;
+}
+
+.navlist
+{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  list-style-type: none;
 }

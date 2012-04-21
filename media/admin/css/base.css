@@ -229,7 +229,7 @@ p img, h1 img, h2 img, h3 img, h4 img, td img {
 }
 
 .nowrap {
-    white-space: nowrap;
+    /*white-space: nowrap;*/
 }
 
 /* TABLES */
@@ -539,11 +539,13 @@ div.system-message p.system-message-title {
 div.breadcrumbs {
     background: white url(../img/admin/nav-bg-reverse.gif) 0 -10px repeat-x;
     padding: 2px 8px 3px 8px;
-    font-size: 11px;
+    font-size: 14px;
     color: #999;
     border-top: 1px solid white;
     border-bottom: 1px solid #ccc;
     text-align: left;
+    height: 20px;
+    font-weight: bold;
 }
 
 /* ACTION ICONS */
@@ -714,6 +716,8 @@ table#change-history tbody th {
 .dashboard #content {
     width: 600px;
     min-height: 500px;
+    margin-left: 50px;
+    margin-top: 30px;
 }
 
 /* HEADER */
@@ -729,6 +733,7 @@ table#change-history tbody th {
 #logoimage
 {
   width: 100%;
+  margin-bottom: -13px;
 }
 #colorbar
 {
