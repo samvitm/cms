@@ -1,0 +1,16 @@
+Hi {{ sub.author.get_full_name }},
+
+Congratulations !
+Your paper {{ sub }} has been accepted for the {{ sub.conference }} conference.
+
+Conference starts on {{ sub.conference.start_date }} and ends on {{ sub.conference.end_date }}.
+Venue : {{ sub.conference.venue }}.
+
+Please make the necessary arrangements to attend the conference at {{ sub.conference.venue }}.
+
+Contact the conference administrator and see the conference details on the website.
+
+Regards,
+{{ sub.conference.admin.get_full_name }}
+Conference Administrator
+{{ sub.conference }} - {{ sub.conference.venue }}

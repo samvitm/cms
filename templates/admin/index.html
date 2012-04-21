@@ -1,16 +1,26 @@
 {% extends "admin/base_site.html" %}
 {% load i18n %}
-
-{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% load adminmedia %}{% admin_media_prefix %}css/dashboard.css" />{% endblock %}
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% load adminmedia %}{% admin_media_prefix %}css/dashboard.css" />
+  {% if not user.is_superuser %}
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css" />
+  {% endif %}
+{% endblock %}
 
 {% block coltype %}colMS{% endblock %}
 
-{% block bodyclass %}dashboard{% endblock %}
+{% block bodyclass %}{% if user.is_superuser %}dashboard{% else %}login{% endif %}{% endblock %}
 
 {% block breadcrumbs %}{% endblock %}
 
+{% if user.is_superuser %}
+{% block nav-global %}{% endblock %}
+
+{% block content_title %}{% endblock %}
+{% endif %}
+
 {% block content %}
-<div id="content-main">
+  {% if user.is_superuser %}
+      <div id="content-main">
 
 {% if app_list %}
     {% for app in app_list %}
@@ -45,9 +55,102 @@
     <p>{% trans "You don't have permission to edit anything." %}</p>
 {% endif %}
 </div>
+  {% else %}
+      <div id='contentmain' style="margin-left: 74px">
+ {%  block maincontent %}
+    <div class='colm1'>
+      {% block colm1 %}
+        <h1>Profile - {{ user.username }}</h1>
+        <br/>
+        <table id='profile'>
+          <tr><td>Name : </td><td>{% if user.get_full_name %}{{ user.get_full_name }}{% else %}{{ user.username }}{% endif %}</td></tr>
+          <tr><td>Phone : </td><td>{{ user.profile.phone_number }}</td></tr>
+          <tr><td>Email : </td><td>{{ user.email }}</td></tr>
+          <tr><td>City : </td><td>{{ user.profile.city }}</td></tr>
+          <tr><td>State : </td><td>{{ user.profile.state }}</td></tr>
+          <tr><td>Country : </td><td>{{ user.profile.country }}</td></tr>
+        </table>
+        <br/> <br/> <br/> 
+        <h3>Logged in as {{ user.profile.type }}</h3>
+       {% endblock %}
+      </div>
+    <div class=colm2>
+      {% block colm2 %}
+        {% if user.is_authenticated %}
+          <h2>Navigation </h2>
+          <ul id='leftnav'>
+            <li class='navlist'><a href="{% url admin:index %}">My Profile</a> </li>
+            {% if user.profile.type == 'Author' %}
+            <li class='navlist'><a href="{% url admin:submission_submission_changelist %}"> View Submissions </a> </li>
+            <li class='navlist'><a href="{% url admin:submission_submission_add %}"> Add Submission </a> </li>
+            {% endif %}
+            {% if user.profile.type == 'Reviewer' %}
+              <li class='navlist'><a href="{% url admin:submission_submission_changelist %}"> View Submissions </a> </li>
+              <li class='navlist'><a href="{% url admin:review_bid_add %}"> Bid on a submission </a> </li>
+              <li class='navlist'><a href="{% url admin:review_bid_changelist %}"> View Bids</a> </li>
+              <li class='navlist'><a href="{% url admin:review_review_add %}"> Add a review </a> </li>
+              <li class='navlist'><a href="{% url admin:review_review_changelist %}"> View Reviews </a> </li>
+              <li class='navlist'><a href="{% url admin:review_reviewupload_add %}"> Upload review files </a> </li>
+              <li class='navlist'><a href="{% url admin:review_reviewupload_changelist %}"> View uploaded reviews </a> </li>
+             {% endif %}
+          {% if user.profile.type == 'Delegate' %}
+            
+            {% endif %}
+          {% if user.profile.type == 'Sponsor' %}
+            <li class='navlist'><a href="/static/images/sponsor_banner_areas.png">View banner areas</a> </li>
+             <li class='navlist'><a href="{% url admin:conference_banner_add%}">Reserve banner space</a> </li>
+             <li class='navlist'><a href="{% url admin:conference_banner_changelist%}">View Reserved spaces</a> </li>
+
+            {% endif %}
+          {% if user.profile.type == 'ConfAdmin' %}
+            <li class='navlist'><a href="{% url invite %}"> Invite Reviewers </a> </li>
+            <li class='navlist'><a href="{% url admin:submission_submission_changelist %}"> View Submissions </a> </li>
+                  <li class='navlist'><a href="{% url admin:review_bid_changelist %}"> View Bids</a> </li>
+
+              <li class='navlist'><a href="{% url admin:review_review_changelist %}"> View Reviews </a> </li>
+              
+              <li class='navlist'><a href="{% url admin:review_reviewupload_changelist %}"> View uploaded reviews </a> </li>
+            <li class='navlist'><a href="{% url admin:conference_program_add%}">Add a program</a> </li>
+            <li class='navlist'><a href="{% url admin:conference_program_changelist%}">View Programs</a> </li>
+            <li class='navlist'><a href="{% url admin:conference_lecture_changelist%}">View Lectures</a> </li>
+            <li class='navlist'><a href="{% url admin:conference_lecture_add%}">Add Lectures</a> </li>
+
+            {% endif %}
+
+            <li class='navlist'><a href="{% url pay %}"> Make Payment</a> </li>
+          </ul>
+        {% else %}
+        <h2>Login / Register</h2>
+        <div class="imgFrame">
+          <a href="{% url login %}" target="">
+            <img src="/static/images/2011-11-2--22-16-37-540_2011-9-18--18-6-57-343_login.jpg" border="0" width="239px" height="95px">
+          </a>
+        </div>
+        <br>
+        <a href="{% url signup %}" target="">
+        <h3 style="color: #4169e1;">Register on CMS</h3>
+        </a>
+        {% endif %}
+        </p>
+      <h2>Updates</h2>
+      <div class="col2p">
+        <h3>New site launched</h3>
+        <p>
+          A new site for conference management has been launched
+        </p>
+
+
+      </div>
+     {% endblock %}
+    </div>
+   {% endblock %}
+  </div>
+      
+  {% endif %}
 {% endblock %}
 
 {% block sidebar %}
+  {% if user.is_superuser %}
 <div id="content-related">
     {% if user.is_superuser %}
     <div class="module" id="settings">
@@ -55,6 +158,7 @@
               <br/>
              <ul class="actionlist">
                 <li class='changelink'> <a href="{%  url assign %}">Assign Reviewers</a> </li>
+                <li class='changelink'> <a href="{%  url invite %}">Invite Reviewers</a> </li>
              </ul>
      </div>
     {% endif %}
@@ -87,4 +191,6 @@
     </div>
    
 </div>
+  {% endif %}
 {% endblock %}
+

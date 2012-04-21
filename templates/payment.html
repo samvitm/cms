@@ -1,0 +1,41 @@
+{% extends "admin/login.html" %}
+{% block title %}Payments | BITS CMS Admin{% endblock %}
+{% block colm1 %}
+  <h2>Make a payment</h2>
+  <br>
+  <br>
+  <div id='signupform'>
+    <form action="{% url pay %}" method="post" >
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+    </table>
+    <br/>
+    <input type="submit" value="MAKE PAYMENT" style="width: 150px;height: 30px;margin-left: 100px ;">
+    </form>
+  </div>
+  <br><hr class="hrs">
+  <h2>Payment history </h2>
+  <br><br>
+  {% if payments %}
+    {% for p in payments %}
+      <h3>Payment #{{ forloop.counter }}</h3>
+     <ul class='normalul'>
+      <li>Conference : {{ p.conference }}</li>
+      <li>Mode of payment : {% if p.mode == 'cc' %}Credit Card {% else %} Debit Card {% endif %}</li>
+      <li>Package details : {{ p.package }}</li>
+      <li>Transaction ID : {{ p.transaction_id|upper  }}</li>
+      <li>Verification : {% if p.verified %}<span style="color: green;font-weight: bold"> Your payment has been verified </span> {% else %} <span style="color: orange;">Verification Pending</span>{% endif %} </li>
+      <li>Time of payment : {{ p.time }}</li>
+      </ul>
+      <hr class="hrs"/>
+    {% endfor %}
+
+  {% else %}
+    <p>You have not made any payments yet</p>
+  {% endif %}
+{% endblock %}
+  {% block colm2 %}
+    {{ block.super }}
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "admin/login.html" %}
+{% block title %}Assign Reviewers | BITS CMS Admin{% endblock %}
+  {% block colm1 %}
+  {% if  sub  %}
+    <h2> Submission title : {{ sub }} </h2><br><br>
+  {% endif %}
+  {% if coms %}
+    <h3>Previous comments</h3>
+    {% for com in coms %}
+      {% if com.author.profile.type == "Reviewer" %}
+        <h4>Reviewer #{{ com.author.id }} : </h4>
+      {% else %}
+        <h4>Author #{{ com.author.id }} : </h4>
+      {% endif %}
+      <br/>
+      <div class="comment">
+      {{ com.comment }}
+      </div>
+      <br><br><br>
+      <hr style="height: 3px;width: 600px;">
+    {% endfor %}
+  {% endif %}
+  <h3>Your comment : </h3><br/>
+  <form action="{% url comment %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" value="{{ sub.id }}" name='sub'>
+   <textarea  rows="10" cols="70" name="comment" class="vLargeTextField"></textarea>
+  <br/><br/><input type="submit" value="Comment" style="width: 150px;height: 30px;">
+  </form>
+{% endblock %}

@@ -42,12 +42,50 @@
       </div>
     <div class=colm2>
       {% block colm2 %}
-      <h2>Updates</h2>
-      <div class="col2p">
-        <h3>New site launched</h3>
-        <p>
-          A new site for conference management has been launched
-        </p>
+        {% if user.is_authenticated %}
+          <h2>Navigation </h2>
+          <ul id='leftnav'>
+            <li class='navlist'><a href="{% url admin:index %}">My Profile</a> </li>
+            {% if user.profile.type == 'Author' %}
+            <li class='navlist'><a href="{% url admin:submission_submission_changelist %}"> View Submissions </a> </li>
+            <li class='navlist'><a href="{% url admin:submission_submission_add %}"> Add Submission </a> </li>
+            {% endif %}
+            {% if user.profile.type == 'Reviewer' %}
+              <li class='navlist'><a href="{% url admin:submission_submission_changelist %}"> View Submissions </a> </li>
+              <li class='navlist'><a href="{% url admin:review_bid_add %}"> Bid on a submission </a> </li>
+              <li class='navlist'><a href="{% url admin:review_bid_changelist %}"> View Bids</a> </li>
+              <li class='navlist'><a href="{% url admin:review_review_add %}"> Add a review </a> </li>
+              <li class='navlist'><a href="{% url admin:review_review_changelist %}"> View Reviews </a> </li>
+              <li class='navlist'><a href="{% url admin:review_reviewupload_add %}"> Upload review files </a> </li>
+              <li class='navlist'><a href="{% url admin:review_reviewupload_changelist %}"> View uploaded reviews </a> </li>
+             {% endif %}
+          {% if user.profile.type == 'Delegate' %}
+
+            {% endif %}
+          {% if user.profile.type == 'Sponsor' %}
+            <li class='navlist'><a href="/static/images/sponsor_banner_areas.png">View banner areas</a> </li>
+            <li class='navlist'><a href="{% url admin:conference_banner_add%}">Reserve banner space</a> </li>
+             <li class='navlist'><a href="{% url admin:conference_banner_changelist%}">View Reserved spaces</a> </li>
+
+            {% endif %}
+          {% if user.profile.type == 'ConfAdmin' %}
+            <li class='navlist'><a href="{% url invite %}"> Invite Reviewers </a> </li>
+            <li class='navlist'><a href="{% url admin:submission_submission_changelist %}"> View Submissions </a> </li>
+                  <li class='navlist'><a href="{% url admin:review_bid_changelist %}"> View Bids</a> </li>
+
+              <li class='navlist'><a href="{% url admin:review_review_changelist %}"> View Reviews </a> </li>
+
+              <li class='navlist'><a href="{% url admin:review_reviewupload_changelist %}"> View uploaded reviews </a> </li>
+            <li class='navlist'><a href="{% url admin:conference_program_add%}">Add a program</a> </li>
+            <li class='navlist'><a href="{% url admin:conference_program_changelist%}">View Programs</a> </li>
+            <li class='navlist'><a href="{% url admin:conference_lecture_changelist%}">View Lectures</a> </li>
+            <li class='navlist'><a href="{% url admin:conference_lecture_add%}">Add Lectures</a> </li>
+
+            {% endif %}
+
+            <li class='navlist'><a href="{% url pay %}"> Make Payment</a> </li>
+          </ul>
+        {% else %}
         <h2>Login / Register</h2>
         <div class="imgFrame">
           <a href="{% url login %}" target="">
@@ -58,7 +96,16 @@
         <a href="{% url signup %}" target="">
         <h3 style="color: #4169e1;">Register on CMS</h3>
         </a>
+        {% endif %}
         </p>
+      <h2>Updates</h2>
+      <div class="col2p">
+        <h3>New site launched</h3>
+        <p>
+          A new site for conference management has been launched
+        </p>
+
+
       </div>
      {% endblock %}
     </div>

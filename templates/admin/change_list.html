@@ -42,10 +42,12 @@
         {% trans "Home" %}
       </a>
        &rsaquo;
+      {% comment %}
        <a href="../">
          {{ app_label|capfirst }}
       </a>
       &rsaquo;
+      {% endcomment %}
       {{ cl.opts.verbose_name_plural|capfirst }}
     </div>
   {% endblock %}

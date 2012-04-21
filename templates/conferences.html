@@ -1,0 +1,25 @@
+{% extends "admin/login.html" %}
+{% block title %}Conferences | BITS CMS Admin{% endblock %}
+{% block colm1 %}
+  <h1>Conferences</h1><br/>
+
+  {% for c in confs %}
+    <span><h2>{{ c.name }} - {{ c.venue }}</h2></span>
+    {{ c.start_date  }} - {{ c.end_date }}
+    <br/><br/>
+    <h3>{{ c.about }}</h3>
+    {% for p in c.program_set.all %}
+      <ul>
+      <li><h3>{{ p.name }} - {{ p.start_date_time }} to {{ p.end_date_time }}</h3>
+      <ul>
+      {% for l in p.lecture_set.all %}
+        <li>{{ l.name }}<br/>{{ l.description }}</li>
+      {% endfor %}
+      </ul>
+      </li>
+      </ul>
+    {% endfor %}
+    <hr class="hrs">
+  {% endfor %}
+
+{% endblock %}

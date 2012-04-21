@@ -1,11 +1,12 @@
 {% extends "admin/login.html" %}
-{% block maincontent %}
+{% block title %}Assign Reviewers | BITS CMS Admin{% endblock %}
 
+{% block colm1 %}
   {% if subs %}
     <h2>Select submission to assign Reviewers to : </h2> <br>
     <ul>
       {% for sub in subs %}
-        <li><a href="{{ sub.id }}">{{ sub }}</a></li>
+        <li><a href="{% url assign %}{{ sub.id }}">{{ sub }}</a>
         {% if sub.reviewers.all %}
           <h4>Assigned Reviewers : </h4>
           {% for r in sub.reviewers.all %}
@@ -13,9 +14,15 @@
           <li>{{ r }} - <a href="{% url assign sub.id %}?remove={{ r.id }}"><span style="font-size:12px;color: maroon;">Remove</span></a></li>
         </ul>
           {% endfor %}
+        {% else %}
+          <h4>No reviewers assigned</h4>
+        </li>
         {% endif %}
+        <hr class='hrs'>
       {% endfor %}
     </ul>
+  {% else %}
+    <h2>There are currently no submissions </h2> <br>
   {% endif %}
   {% if revs %}
     <h2>Select the reviewers you want to assign to : <span style="color:#4169e1;">{{ sub.title }} by {{ sub.authors.all }}</span> </h2><br>
@@ -28,7 +35,8 @@
     </ul>
     <input type="submit" value="Assign Selected" class="submit" style="width: 150px;height: 30px;">
     </form>
+  {% else %}
+    <h2>There are no reviewers - <a href="{% url assign %}">Go back</a></h2>
   {% endif %}
-
 
 {% endblock %}
