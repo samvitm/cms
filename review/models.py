@@ -32,6 +32,7 @@ class ReviewUpload(models.Model):
   file = models.FileField(upload_to='reviews')
 
   def __unicode__(self):
+
     return str(self.review)
 
 class Bid(models.Model):
