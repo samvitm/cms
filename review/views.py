@@ -20,7 +20,6 @@ def assignReviewers(request,subid=None):
     rs = map(int,request.POST.getlist('reviewers'))
     sub = Submission.objects.get(pk = subid)
     for r in rs:
-      print r
       sub.reviewers.add(User.objects.get(pk = r))
     sub.save()
     return render_to_response('assign.html',{'subs':subs},context_instance=RequestContext(request))
