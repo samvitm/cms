@@ -8,13 +8,13 @@ The system is fully equipped to support all technical specifications of a confer
 
 Features 
 
-  +Management and monitoring of the program committee
-  +Flexible management of papers
-  +Automatic paper submission
-  +Paper assignment based on the preferences of PC members
-  +List of the latest events
-  +Submission of reviews
-  +Sending email to organizing committee members, referees and authors
-  +Online discussion of papers
+  + Management and monitoring of the program committee
+  + Flexible management of papers
+  + Automatic paper submission
+  + Paper assignment based on the preferences of PC members
+  + List of the latest events
+  + Submission of reviews
+  + Sending email to organizing committee members, referees and authors
+  + Online discussion of papers
 
 Live demo at : http://bits-cms.dotcloud.com
